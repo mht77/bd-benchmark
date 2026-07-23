@@ -1,0 +1,186 @@
+<!doctype html><html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width, initial-scale=1'><title>BD Benchmark — Tasks</title><link rel='icon' type='image/svg+xml' href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><defs><linearGradient id='g' x1='0' y1='1' x2='1' y2='0'><stop offset='0' stop-color='%236366f1'/><stop offset='1' stop-color='%2322d3ee'/></linearGradient></defs><rect width='64' height='64' rx='14' fill='%230f172a'/><rect x='11' y='34' width='11' height='19' rx='3' fill='url(%23g)' opacity='0.65'/><rect x='26.5' y='24' width='11' height='29' rx='3' fill='url(%23g)' opacity='0.85'/><rect x='42' y='11' width='11' height='42' rx='3' fill='url(%23g)'/></svg>"><style>
+:root { color-scheme: light dark; }
+body { margin: 0; background: #f9f9f7; color: #0b0b0b;
+       font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
+.viz-root {
+  --surface-1: #fcfcfb; --page: #f9f9f7;
+  --ink: #0b0b0b; --ink2: #52514e; --muted: #898781;
+  --grid: #e1e0d9; --axis: #c3c2b7; --border: rgba(11,11,11,0.10);
+  --s1: #407bdb;
+  --s2: #6d9be3;
+  --s3: #2460bf;
+  --s4: #1c4992;
+  --s5: #24665d;
+  --s6: #5dda2f;
+  --s7: #dd7889;
+  --s8: #4ec1b1;
+  --s9: #3eafa0;
+  --s10: #35978a;
+  --s11: #296812;
+  --s12: #49b921;
+  --s13: #399019;
+  --s14: #2c7e73;
+  --s15: #ce3b54;
+  --s16: #da611b;
+  --s17: #ac4d15;
+  --s18: #972639;
+  --s19: #ed9c6e;
+  --s20: #e77e40;
+  --s21: #b073d3;
+  --s22: #632a84;
+  --s23: #8e3cbe;
+  max-width: 1060px; margin: 0 auto; padding: 24px 20px 60px;
+}
+@media (prefers-color-scheme: dark) {
+  body { background: #0d0d0d; color: #ffffff; }
+  .viz-root {
+    --surface-1: #1a1a19; --page: #0d0d0d;
+    --ink: #ffffff; --ink2: #c3c2b7; --muted: #898781;
+    --grid: #2c2c2a; --axis: #383835; --border: rgba(255,255,255,0.10);
+    --s1: #4c84df;
+    --s2: #6c9ae5;
+    --s3: #2c6fda;
+    --s4: #225ebf;
+    --s5: #3c9a8e;
+    --s6: #85db66;
+    --s7: #df8190;
+    --s8: #73c9bd;
+    --s9: #61c2b5;
+    --s10: #4fbaac;
+    --s11: #4aa928;
+    --s12: #6dd448;
+    --s13: #58c82f;
+    --s14: #43ad9f;
+    --s15: #d45469;
+    --s16: #e2702e;
+    --s17: #ce5e1c;
+    --s18: #c03048;
+    --s19: #eb9d6f;
+    --s20: #e7864e;
+    --s21: #b981d9;
+    --s22: #8636b5;
+    --s23: #a156cd;
+  }
+}
+h1 { font-size: 22px; margin: 8px 0 2px; }
+h2 { font-size: 18px; margin: 36px 0 4px; }
+h3 { font-size: 14px; margin: 0 0 2px; color: var(--ink); }
+.sub { color: var(--ink2); font-size: 13px; margin: 0 0 12px; }
+.card { background: var(--surface-1); border: 1px solid var(--border);
+        border-radius: 10px; padding: 16px 18px; margin: 14px 0; }
+.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: 14px; }
+table { border-collapse: collapse; font-size: 13px; width: 100%; }
+th { text-align: left; color: var(--ink2); font-weight: 600; padding: 6px 10px;
+     border-bottom: 1px solid var(--grid); }
+td { padding: 6px 10px; border-bottom: 1px solid var(--grid);
+     font-variant-numeric: tabular-nums; }
+td.name { font-weight: 600; }
+.chip { display: inline-block; width: 10px; height: 10px; border-radius: 3px;
+        margin-right: 7px; vertical-align: baseline; }
+.legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 12px;
+          color: var(--ink2); margin: 6px 0 0; }
+.legend span { white-space: nowrap; }
+svg text { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
+.pend { color: var(--muted); font-size: 12px; }
+.hm-wrap { overflow-x: auto; }
+.hm { border-collapse: collapse; font-size: 13px; width: auto; }
+.hm thead th { text-align: center; }
+.hm td { text-align: center; padding: 5px 8px; white-space: nowrap; }
+.hm td.name { font-weight: 600; text-align: left; padding: 5px 6px; }
+/* Fixed lead column: shrink to its (short) content, not the header/table. */
+.hm td.name, .hm thead th:first-child { width: 1%; white-space: nowrap; }
+.hm td.dk { color: #ffffff; }
+.hm td.lt { color: #0b0b0b; }
+.hm thead th { position: relative; vertical-align: bottom;
+               padding: 0 4px 8px; height: 84px; white-space: nowrap; }
+.hm thead th .rot { writing-mode: vertical-rl; transform: rotate(180deg);
+                    display: inline-block; max-height: 76px; overflow: hidden;
+                    text-overflow: ellipsis; font-size: 12px; }
+.hm thead th:first-child { height: auto; padding: 0 6px 8px; text-align: left; }
+.hm thead th:first-child .rot {
+  writing-mode: horizontal-tb; transform: none; max-height: none; }
+.note { color: var(--muted); font-size: 12px; margin-top: 8px; }
+.pager { display: flex; align-items: center; gap: 10px; margin-top: 10px; }
+.pager button { font: inherit; font-size: 12px; padding: 4px 11px; cursor: pointer;
+                border: 1px solid var(--border); background: var(--surface-1);
+                color: var(--ink); border-radius: 6px; }
+.pager button:disabled { color: var(--muted); opacity: 0.5; cursor: default; }
+.pager .pager-info { color: var(--ink2); font-size: 12px; }
+/* Click-to-zoom charts + the full-screen pan/zoom modal they open into. */
+svg.zoomable { cursor: zoom-in; }
+.mob-modal { position: fixed; inset: 0; z-index: 999; display: none;
+             flex-direction: column; background: var(--page); }
+.mob-modal.open { display: flex; }
+.mob-modal-bar { display: flex; align-items: center; gap: 10px;
+                 padding: 10px 16px; border-bottom: 1px solid var(--border); }
+.mob-modal-title { flex: 1; font-size: 15px; font-weight: 600; color: var(--ink);
+                   overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.mob-modal-hint { font-size: 12px; color: var(--muted); white-space: nowrap; }
+.mob-modal-bar button { font: inherit; font-size: 13px; padding: 5px 12px;
+                        cursor: pointer; border: 1px solid var(--border);
+                        background: var(--surface-1); color: var(--ink);
+                        border-radius: 7px; }
+.mob-modal-bar button:hover { border-color: var(--axis); }
+.mob-modal-legend { display: flex; flex-wrap: wrap; gap: 6px 8px;
+                    padding: 8px 16px; border-bottom: 1px solid var(--border);
+                    max-height: 22vh; overflow-y: auto; }
+.mob-modal-legend button { display: inline-flex; align-items: center; gap: 6px;
+                           font: inherit; font-size: 12px; cursor: pointer;
+                           padding: 3px 9px; border-radius: 6px; color: var(--ink);
+                           border: 1px solid var(--border); background: var(--surface-1); }
+.mob-modal-legend button:hover { border-color: var(--axis); }
+.mob-modal-legend button i { width: 10px; height: 10px; border-radius: 3px; flex: none; }
+.mob-modal-legend button.off { color: var(--muted); text-decoration: line-through; opacity: 0.6; }
+.mob-modal-legend button.off i { opacity: 0.3; }
+.mob-modal-stage { flex: 1; overflow: hidden; position: relative;
+                   touch-action: none; cursor: grab; background: var(--surface-1); }
+.mob-modal-stage.grabbing { cursor: grabbing; }
+.mob-modal-stage svg { position: absolute; inset: 0; width: 100%; height: 100%;
+                       max-width: none; }
+@media (max-width: 600px) { .mob-modal-hint { display: none; } }
+.cat-swe { --s1: #407bdb; --s2: #6d9be3; --s3: #2460bf; --s4: #1c4992; --s5: #24665d; --s6: #5dda2f; --s7: #dd7889; --s8: #4ec1b1; --s9: #3eafa0; --s10: #35978a; --s11: #296812; --s12: #49b921; --s13: #399019; --s14: #2c7e73; --s15: #ce3b54; --s16: #da611b; --s17: #ac4d15; --s18: #972639; --s19: #ed9c6e; --s20: #e77e40; --s21: #b073d3; --s22: #632a84; --s23: #8e3cbe; }
+@media (prefers-color-scheme: dark) { .cat-swe { --s1: #4c84df; --s2: #6c9ae5; --s3: #2c6fda; --s4: #225ebf; --s5: #3c9a8e; --s6: #85db66; --s7: #df8190; --s8: #73c9bd; --s9: #61c2b5; --s10: #4fbaac; --s11: #4aa928; --s12: #6dd448; --s13: #58c82f; --s14: #43ad9f; --s15: #d45469; --s16: #e2702e; --s17: #ce5e1c; --s18: #c03048; --s19: #eb9d6f; --s20: #e7864e; --s21: #b981d9; --s22: #8636b5; --s23: #a156cd; } }
+
+.lede { color: var(--ink2); font-size: 14px; max-width: 70ch; margin: 2px 0 6px; }
+.counts { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 4px; }
+.counts .stat { border: 1px solid var(--border); border-radius: 8px; padding: 6px 12px;
+                background: var(--surface-1); font-size: 13px; color: var(--ink2); }
+.counts .stat b { color: var(--ink); font-size: 15px; font-variant-numeric: tabular-nums; }
+.cat-intro { color: var(--ink2); font-size: 13px; max-width: 78ch; margin: 2px 0 14px; }
+.topic-h { display: flex; align-items: baseline; gap: 8px; margin: 18px 0 2px; }
+.topic-h h4 { font-size: 13px; margin: 0; color: var(--ink); letter-spacing: 0.02em; }
+.topic-h .n { color: var(--muted); font-size: 12px; }
+.task { display: grid; grid-template-columns: 1fr auto; gap: 3px 18px;
+        align-items: baseline; padding: 9px 0; border-bottom: 1px solid var(--grid); }
+.task:last-child { border-bottom: none; }
+.task .title { font-size: 14px; color: var(--ink); font-weight: 600; }
+.task .tid { display: inline-block; font-size: 11px; color: var(--muted);
+             font-variant-numeric: tabular-nums; margin-right: 8px;
+             font-weight: 500; letter-spacing: 0.03em; }
+.task .lang { font-size: 11px; color: var(--ink2); border: 1px solid var(--border);
+              border-radius: 5px; padding: 0 6px; margin-left: 8px; white-space: nowrap; }
+.task .agentic { font-size: 11px; color: #fff; background: var(--s5);
+                 border-radius: 5px; padding: 0 6px; margin-left: 6px; white-space: nowrap; }
+.task .wt { font-size: 11px; font-weight: 700; color: var(--s2);
+            border: 1px solid var(--s2); border-radius: 5px; padding: 0 6px;
+            margin-left: 6px; white-space: nowrap; }
+.scoring { display: flex; flex-wrap: wrap; gap: 5px; justify-content: flex-end; }
+.pill { display: inline-flex; align-items: center; gap: 5px; font-size: 11.5px;
+        padding: 2px 9px; border-radius: 999px; white-space: nowrap; color: var(--ink2);
+        border: 1px solid var(--border); }
+.pill i { width: 7px; height: 7px; border-radius: 50%; flex: none; }
+.pill b { color: var(--ink); font-variant-numeric: tabular-nums; }
+.pill.det { background: rgba(27,175,122,0.11); }
+.pill.det i { background: #1baf7a; }
+.pill.judge { background: rgba(237,161,0,0.13); }
+.pill.judge i { background: #eda100; }
+@media (max-width: 620px) {
+  .task { grid-template-columns: 1fr; }
+  .scoring { justify-content: flex-start; }
+}
+.glossary { columns: 2; column-gap: 28px; font-size: 13px; }
+.glossary .g { break-inside: avoid; margin: 0 0 10px; color: var(--ink2); }
+.glossary .g b { color: var(--ink); }
+@media (max-width: 620px) { .glossary { columns: 1; } }
+.foot { color: var(--muted); font-size: 12px; margin-top: 20px; }
+</style></head><body><div class='viz-root'><h1>BD Benchmark — Task Catalog</h1><p class='lede'>A personal benchmark for the software engineering work I actually care about — not generic public leaderboards. Scored deterministically wherever possible and by a rubric-guided judge only for open-ended design.</p><div class='counts'><span class='stat'><b>27</b> tasks</span><span class='stat'><b>27</b> software engineering</span><span class='stat'><b>9</b> of them agentic</span></div><h2>Software Engineering</h2><p class='cat-intro'>C#/.NET and Python backend work — algorithms, data structures, SOLID/OOP, design patterns, system design, SQL, concurrency, one hard TypeScript/React task, plus <b>agentic</b> tasks that drive a real tool-calling loop in a sandbox. Graded deterministically wherever possible.</p><div class='card'><div class='topic-h' style='margin-top:2px'><h4>Algorithms</h4><span class='n'>2</span></div><div class='task'><div><span class='tid'>swe-01</span><span class='title' dir='auto'>Sliding-window rate limiter (C#)</span><span class='lang'>C#</span></div><div class='scoring'><span class='pill det'><i></i>C# test suite</span></div></div><div class='task'><div><span class='tid'>swe-02</span><span class='title' dir='auto'>Log-stream sessionization (Python)</span><span class='lang'>Python</span></div><div class='scoring'><span class='pill det'><i></i>pytest suite</span></div></div><div class='topic-h'><h4>Data structures</h4><span class='n'>3</span></div><div class='task'><div><span class='tid'>swe-03</span><span class='title' dir='auto'>Sliding-window latency percentile tracker (C#)</span><span class='lang'>C#</span></div><div class='scoring'><span class='pill det'><i></i><b>70%</b> C# test suite</span><span class='pill judge'><i></i><b>30%</b> human review</span></div></div><div class='task'><div><span class='tid'>swe-04</span><span class='title' dir='auto'>Top-K trending items over a sliding window (Python)</span><span class='lang'>Python</span></div><div class='scoring'><span class='pill det'><i></i><b>70%</b> pytest suite</span><span class='pill judge'><i></i><b>30%</b> LLM judge</span></div></div><div class='task'><div><span class='tid'>swe-18</span><span class='title' dir='auto'>Count smaller numbers after self — correctness + scaling</span><span class='lang'>Python</span></div><div class='scoring'><span class='pill det'><i></i><b>50%</b> pytest suite</span><span class='pill det'><i></i><b>50%</b> scaling</span></div></div><div class='topic-h'><h4>Concurrency &amp; async</h4><span class='n'>2</span></div><div class='task'><div><span class='tid'>swe-09</span><span class='title' dir='auto'>Bounded-parallelism async pipeline (C#)</span><span class='lang'>C#</span></div><div class='scoring'><span class='pill det'><i></i>C# test suite</span></div></div><div class='task'><div><span class='tid'>swe-10</span><span class='title' dir='auto'>asyncio streaming pipeline with backpressure (Python)</span><span class='lang'>Python</span></div><div class='scoring'><span class='pill det'><i></i>pytest suite</span></div></div><div class='topic-h'><h4>OOP &amp; SOLID</h4><span class='n'>2</span></div><div class='task'><div><span class='tid'>swe-14</span><span class='title' dir='auto'>SOLID order-pricing library (C#) — adapter-scored</span><span class='lang'>C#</span></div><div class='scoring'><span class='pill det'><i></i><b>70%</b> C# test suite</span><span class='pill judge'><i></i><b>30%</b> human review</span></div></div><div class='task'><div><span class='tid'>swe-16</span><span class='title' dir='auto'>Extensible notification dispatcher (Python) — plugin/OCP tested</span><span class='lang'>Python</span></div><div class='scoring'><span class='pill det'><i></i><b>70%</b> pytest suite</span><span class='pill judge'><i></i><b>30%</b> LLM judge</span></div></div><div class='topic-h'><h4>Design patterns</h4><span class='n'>2</span></div><div class='task'><div><span class='tid'>swe-15</span><span class='title' dir='auto'>Pricing engine (Strategy + Factory + Decorator, C#) — adapter-scored</span><span class='lang'>C#</span></div><div class='scoring'><span class='pill det'><i></i><b>70%</b> C# test suite</span><span class='pill judge'><i></i><b>30%</b> human review</span></div></div><div class='task'><div><span class='tid'>swe-17</span><span class='title' dir='auto'>Extensible event pipeline (Observer + Chain of Responsibility, Python)</span><span class='lang'>Python</span></div><div class='scoring'><span class='pill det'><i></i><b>70%</b> pytest suite</span><span class='pill judge'><i></i><b>30%</b> LLM judge</span></div></div><div class='topic-h'><h4>API design</h4><span class='n'>2</span></div><div class='task'><div><span class='tid'>swe-12</span><span class='title' dir='auto'>Design a resilience policy library (C#) — adapter-scored</span><span class='lang'>C#</span><span class='wt' title='counts 1.5× in the benchmark score'>×1.5</span></div><div class='scoring'><span class='pill det'><i></i><b>80%</b> C# test suite</span><span class='pill judge'><i></i><b>20%</b> human review</span></div></div><div class='task'><div><span class='tid'>swe-13</span><span class='title' dir='auto'>Design a feature-flag SDK (C#) — adapter-scored</span><span class='lang'>C#</span><span class='wt' title='counts 1.5× in the benchmark score'>×1.5</span></div><div class='scoring'><span class='pill det'><i></i><b>80%</b> C# test suite</span><span class='pill judge'><i></i><b>20%</b> human review</span></div></div><div class='topic-h'><h4>System design</h4><span class='n'>2</span></div><div class='task'><div><span class='tid'>swe-05</span><span class='title' dir='auto'>Event-driven order-processing platform</span><span class='wt' title='counts 2× in the benchmark score'>×2</span></div><div class='scoring'><span class='pill judge'><i></i>LLM judge</span></div></div><div class='task'><div><span class='tid'>swe-06</span><span class='title' dir='auto'>Monolith to microservices migration plan</span><span class='wt' title='counts 2× in the benchmark score'>×2</span></div><div class='scoring'><span class='pill judge'><i></i>LLM judge</span></div></div><div class='topic-h'><h4>SQL</h4><span class='n'>2</span></div><div class='task'><div><span class='tid'>swe-07</span><span class='title' dir='auto'>Quarterly category revenue report (single query)</span><span class='lang'>SQL</span></div><div class='scoring'><span class='pill det'><i></i>SQL result match</span></div></div><div class='task'><div><span class='tid'>swe-08</span><span class='title' dir='auto'>Cohort retention query + slow query rewrite</span><span class='lang'>SQL</span></div><div class='scoring'><span class='pill det'><i></i><b>60%</b> SQL result match</span><span class='pill judge'><i></i><b>40%</b> LLM judge</span></div></div><div class='topic-h'><h4>Frontend</h4><span class='n'>1</span></div><div class='task'><div><span class='tid'>swe-11</span><span class='title' dir='auto'>Type-safe form engine in TypeScript + React</span><span class='lang'>TypeScript</span></div><div class='scoring'><span class='pill det'><i></i><b>60%</b> TS type-check + tests</span><span class='pill judge'><i></i><b>40%</b> LLM judge</span></div></div><div class='topic-h'><h4>Agentic · bug fixing</h4><span class='n'>3</span></div><div class='task'><div><span class='tid'>agentic-01</span><span class='title' dir='auto'>Fix the failing inventory package (Python, agentic)</span><span class='lang'>Python</span><span class='agentic'>agentic</span></div><div class='scoring'><span class='pill det'><i></i><b>70%</b> held-out tests</span><span class='pill det'><i></i><b>30%</b> tool discipline</span></div></div><div class='task'><div><span class='tid'>agentic-04</span><span class='title' dir='auto'>Fix the failing ledger package — multi-module interacting bugs (Python, agentic)</span><span class='lang'>Python</span><span class='agentic'>agentic</span></div><div class='scoring'><span class='pill det'><i></i><b>70%</b> held-out tests</span><span class='pill det'><i></i><b>30%</b> tool discipline</span></div></div><div class='task'><div><span class='tid'>agentic-07</span><span class='title' dir='auto'>A 10-module billing engine with ~10 planted contract violations — some visible tests fail, but most bugs only surface against the SPEC.md contracts the hidden suite enforces</span><span class='lang'>Python</span><span class='agentic'>agentic</span><span class='wt' title='counts 2.5× in the benchmark score'>×2.5</span></div><div class='scoring'><span class='pill det'><i></i><b>70%</b> held-out tests</span><span class='pill det'><i></i><b>30%</b> tool discipline</span></div></div><div class='topic-h'><h4>Agentic · feature work</h4><span class='n'>4</span></div><div class='task'><div><span class='tid'>agentic-02</span><span class='title' dir='auto'>Build a TTL + LRU KV store to spec (C#/.NET, agentic)</span><span class='lang'>C#</span><span class='agentic'>agentic</span></div><div class='scoring'><span class='pill det'><i></i><b>70%</b> held-out tests</span><span class='pill det'><i></i><b>30%</b> tool discipline</span></div></div><div class='task'><div><span class='tid'>agentic-05</span><span class='title' dir='auto'>Audit a weighted rate limiter against its spec (C#/.NET, agentic)</span><span class='lang'>C#</span><span class='agentic'>agentic</span></div><div class='scoring'><span class='pill det'><i></i><b>70%</b> held-out tests</span><span class='pill det'><i></i><b>30%</b> tool discipline</span></div></div><div class='task'><div><span class='tid'>agentic-08</span><span class='title' dir='auto'>Implement snapshot isolation with first-committer-wins conflicts, versioned deletes, and materialized ordinal scans — a dense spec where the traps live in SpecDetails.md</span><span class='lang'>C#</span><span class='agentic'>agentic</span></div><div class='scoring'><span class='pill det'><i></i><b>70%</b> held-out tests</span><span class='pill det'><i></i><b>30%</b> tool discipline</span></div></div><div class='task'><div><span class='tid'>agentic-09</span><span class='title' dir='auto'>Improve a weak NP-hard-scheduling solver as far as possible in 3s per instance — graded on solution quality vs a tuned reference on held-out seeds, so there is no score ceiling to memorize</span><span class='lang'>Python</span><span class='agentic'>agentic</span><span class='wt' title='counts 3× in the benchmark score'>×3</span></div><div class='scoring'><span class='pill det'><i></i>solution quality</span></div></div><div class='topic-h'><h4>Agentic · tool orchestration</h4><span class='n'>2</span></div><div class='task'><div><span class='tid'>agentic-03</span><span class='title' dir='auto'>Multi-step tool orchestration over a mock backend (agentic)</span><span class='agentic'>agentic</span></div><div class='scoring'><span class='pill det'><i></i><b>60%</b> final-state grade</span><span class='pill det'><i></i><b>40%</b> tool discipline</span></div></div><div class='task'><div><span class='tid'>agentic-06</span><span class='title' dir='auto'>Duplicate-charge hunt — paginated multi-hop orchestration with policy gate (agentic)</span><span class='agentic'>agentic</span></div><div class='scoring'><span class='pill det'><i></i><b>60%</b> final-state grade</span><span class='pill det'><i></i><b>40%</b> tool discipline</span></div></div></div><h2>How scoring works</h2><p class='cat-intro'>Most tasks are graded <b>deterministically</b> (<span class='pill det'><i></i>green</span> — tests, execution, keyed answers, telemetry); open-ended design and analysis are <b>judged</b> (<span class='pill judge'><i></i>amber</span> — an LLM or a human against a rubric). Tasks that mix methods show each method's weight.</p><div class='card'><div class='glossary'><p class='g'><span class='pill det'><i></i>C# test suite</span> &nbsp;Your code is injected into a console runner and executed with dotnet run.</p><p class='g'><span class='pill det'><i></i>pytest suite</span> &nbsp;Your code is injected and run against a hidden pytest suite.</p><p class='g'><span class='pill det'><i></i>TS type-check + tests</span> &nbsp;tsc --noEmit type-check plus node --test runtime tests.</p><p class='g'><span class='pill det'><i></i>SQL result match</span> &nbsp;The query runs against a seeded SQLite DB; the result set must match the expected one.</p><p class='g'><span class='pill det'><i></i>scaling</span> &nbsp;The solution is timed across growing input sizes and scored on its empirical growth exponent.</p><p class='g'><span class='pill det'><i></i>held-out tests</span> &nbsp;A held-out suite runs against the agent&#x27;s final workspace.</p><p class='g'><span class='pill det'><i></i>final-state grade</span> &nbsp;The final fixture state and the tool-call trace are graded against the task&#x27;s domain rules.</p><p class='g'><span class='pill det'><i></i>solution quality</span> &nbsp;A held-out benchmark scores the agent&#x27;s final solution by quality against a tuned reference — a ratio, not a pass count, so there is no ceiling to memorize.</p><p class='g'><span class='pill det'><i></i>tool discipline</span> &nbsp;Deterministic process telemetry: tested-before-finishing, valid tool calls, and a graded call-count budget.</p><p class='g'><span class='pill judge'><i></i>LLM judge</span> &nbsp;A judge model scores the response against a rubric and reference answer.</p><p class='g'><span class='pill judge'><i></i>human review</span> &nbsp;Design quality is scored by hand, per criterion, against written guidance.</p></div></div><p class='foot'>Generated from each task's <code>task.yaml</code>.</p></div></body></html>
