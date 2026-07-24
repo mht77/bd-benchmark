@@ -29,4 +29,4 @@
 | 23 | haiku-4.5@high | **85.9** | 36m08.8s | $1.88 | $0.0722 | 133.3 tok/s | 1,199,003 | 289,198 | 7 |
 | 24 | gpt-4o | **73.8** | 12m24.4s | $1.15 | $0.0444 | 62.5 tok/s | 296,546 | 46,532 | 14 |
 | 25 | gpt-4-turbo | **55.5** | 32m46.9s | $9.83 | $0.3780 | 29.4 tok/s | 835,782 | 57,769 | 19 |
-> † **fable-5@medium** was refused by a safety classifier on swe-07, swe-10, swe-18 (a false positive on benign prompts), so those 3 cells were answered by its **claude-opus-4-8** fallback, not by fable-5@medium itself.
+> † **fable-5@medium**: swe-07, swe-10, swe-18 — refused by a safety classifier (false positive), answered by its **claude-opus-4-8** fallback.
