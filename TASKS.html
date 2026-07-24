@@ -6,29 +6,31 @@ body { margin: 0; background: #f9f9f7; color: #0b0b0b;
   --surface-1: #fcfcfb; --page: #f9f9f7;
   --ink: #0b0b0b; --ink2: #52514e; --muted: #898781;
   --grid: #e1e0d9; --axis: #c3c2b7; --border: rgba(11,11,11,0.10);
-  --s1: #407bdb;
-  --s2: #6d9be3;
-  --s3: #2460bf;
-  --s4: #1c4992;
-  --s5: #24665d;
-  --s6: #5dda2f;
-  --s7: #dd7889;
-  --s8: #4ec1b1;
-  --s9: #3eafa0;
-  --s10: #35978a;
-  --s11: #296812;
-  --s12: #49b921;
-  --s13: #399019;
-  --s14: #2c7e73;
-  --s15: #972639;
-  --s16: #da611b;
-  --s17: #ac4d15;
-  --s18: #ce3b54;
-  --s19: #ed9c6e;
-  --s20: #e77e40;
-  --s21: #b073d3;
-  --s22: #632a84;
-  --s23: #8e3cbe;
+  --s1: #ac4d15;
+  --s2: #407bdb;
+  --s3: #6d9be3;
+  --s4: #2460bf;
+  --s5: #1c4992;
+  --s6: #24665d;
+  --s7: #5dda2f;
+  --s8: #dd7889;
+  --s9: #4ec1b1;
+  --s10: #3eafa0;
+  --s11: #35978a;
+  --s12: #358618;
+  --s13: #4dc322;
+  --s14: #296812;
+  --s15: #41a51d;
+  --s16: #2c7e73;
+  --s17: #972639;
+  --s18: #e56e2a;
+  --s19: #cf5c1a;
+  --s20: #ce3b54;
+  --s21: #ed9c6e;
+  --s22: #e9854c;
+  --s23: #b073d3;
+  --s24: #632a84;
+  --s25: #8e3cbe;
   max-width: 1060px; margin: 0 auto; padding: 24px 20px 60px;
 }
 @media (prefers-color-scheme: dark) {
@@ -37,29 +39,31 @@ body { margin: 0; background: #f9f9f7; color: #0b0b0b;
     --surface-1: #1a1a19; --page: #0d0d0d;
     --ink: #ffffff; --ink2: #c3c2b7; --muted: #898781;
     --grid: #2c2c2a; --axis: #383835; --border: rgba(255,255,255,0.10);
-    --s1: #4c84df;
-    --s2: #6c9ae5;
-    --s3: #2c6fda;
-    --s4: #225ebf;
-    --s5: #3c9a8e;
-    --s6: #85db66;
-    --s7: #df8190;
-    --s8: #73c9bd;
-    --s9: #61c2b5;
-    --s10: #4fbaac;
-    --s11: #4aa928;
-    --s12: #6dd448;
-    --s13: #58c82f;
-    --s14: #43ad9f;
-    --s15: #c03048;
-    --s16: #e2702e;
-    --s17: #ce5e1c;
-    --s18: #d45469;
-    --s19: #eb9d6f;
-    --s20: #e7864e;
-    --s21: #b981d9;
-    --s22: #8636b5;
-    --s23: #a156cd;
+    --s1: #ce5e1c;
+    --s2: #4c84df;
+    --s3: #6c9ae5;
+    --s4: #2c6fda;
+    --s5: #225ebf;
+    --s6: #3c9a8e;
+    --s7: #85db66;
+    --s8: #df8190;
+    --s9: #73c9bd;
+    --s10: #61c2b5;
+    --s11: #4fbaac;
+    --s12: #54c02d;
+    --s13: #73d64f;
+    --s14: #4aa928;
+    --s15: #61d039;
+    --s16: #43ad9f;
+    --s17: #c03048;
+    --s18: #e57b3e;
+    --s19: #e16a25;
+    --s20: #d45469;
+    --s21: #eb9d6f;
+    --s22: #e88c57;
+    --s23: #b981d9;
+    --s24: #8636b5;
+    --s25: #a156cd;
   }
 }
 h1 { font-size: 22px; margin: 8px 0 2px; }
@@ -138,8 +142,8 @@ svg.zoomable { cursor: zoom-in; }
 .mob-modal-stage svg { position: absolute; inset: 0; width: 100%; height: 100%;
                        max-width: none; }
 @media (max-width: 600px) { .mob-modal-hint { display: none; } }
-.cat-swe { --s1: #407bdb; --s2: #6d9be3; --s3: #2460bf; --s4: #1c4992; --s5: #24665d; --s6: #5dda2f; --s7: #dd7889; --s8: #4ec1b1; --s9: #3eafa0; --s10: #35978a; --s11: #296812; --s12: #49b921; --s13: #399019; --s14: #2c7e73; --s15: #972639; --s16: #da611b; --s17: #ac4d15; --s18: #ce3b54; --s19: #ed9c6e; --s20: #e77e40; --s21: #b073d3; --s22: #632a84; --s23: #8e3cbe; }
-@media (prefers-color-scheme: dark) { .cat-swe { --s1: #4c84df; --s2: #6c9ae5; --s3: #2c6fda; --s4: #225ebf; --s5: #3c9a8e; --s6: #85db66; --s7: #df8190; --s8: #73c9bd; --s9: #61c2b5; --s10: #4fbaac; --s11: #4aa928; --s12: #6dd448; --s13: #58c82f; --s14: #43ad9f; --s15: #c03048; --s16: #e2702e; --s17: #ce5e1c; --s18: #d45469; --s19: #eb9d6f; --s20: #e7864e; --s21: #b981d9; --s22: #8636b5; --s23: #a156cd; } }
+.cat-swe { --s1: #ac4d15; --s2: #407bdb; --s3: #6d9be3; --s4: #2460bf; --s5: #1c4992; --s6: #24665d; --s7: #5dda2f; --s8: #dd7889; --s9: #4ec1b1; --s10: #3eafa0; --s11: #35978a; --s12: #358618; --s13: #4dc322; --s14: #296812; --s15: #41a51d; --s16: #2c7e73; --s17: #972639; --s18: #e56e2a; --s19: #cf5c1a; --s20: #ce3b54; --s21: #ed9c6e; --s22: #e9854c; --s23: #b073d3; --s24: #632a84; --s25: #8e3cbe; }
+@media (prefers-color-scheme: dark) { .cat-swe { --s1: #ce5e1c; --s2: #4c84df; --s3: #6c9ae5; --s4: #2c6fda; --s5: #225ebf; --s6: #3c9a8e; --s7: #85db66; --s8: #df8190; --s9: #73c9bd; --s10: #61c2b5; --s11: #4fbaac; --s12: #54c02d; --s13: #73d64f; --s14: #4aa928; --s15: #61d039; --s16: #43ad9f; --s17: #c03048; --s18: #e57b3e; --s19: #e16a25; --s20: #d45469; --s21: #eb9d6f; --s22: #e88c57; --s23: #b981d9; --s24: #8636b5; --s25: #a156cd; } }
 
 .lede { color: var(--ink2); font-size: 14px; max-width: 70ch; margin: 2px 0 6px; }
 .counts { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 4px; }
