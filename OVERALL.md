@@ -14,23 +14,25 @@
 | 8 | sonnet-5@high | **96.4** | 31m30.3s | $2.58 | $0.0991 | 104.2 tok/s | 304,056 | 196,942 | 3 |
 | 9 | gpt-5.6-terra@high | **96.0** | 25m57.7s | $2.91 | $0.1118 | 92.6 tok/s | 297,664 | 144,182 | 2 |
 | 10 | opus-4.6@high | **95.5** | 69m29.9s | $7.93 | $0.3050 | 63.3 tok/s | 266,436 | 263,930 | 4 |
-| 11 | grok-4.6@high | **95.3** | 81m58.8s | $2.68 | $0.1031 | 9.1 tok/s | 370,040 | 44,593 | 1 |
+| 11 | grok-4.6@high | **95.3** | 81m58.8s | $2.68 | $0.1031 | 65.7 tok/s | 370,040 | 323,221 | 1 |
 | 12 | gemini-3.6-flash@high | **95.2** | 31m33.5s | $5.81 | $0.2233 | 231.6 tok/s | 1,676,904 | 438,627 | 3 |
 | 13 | gpt-5.6-luna@high | **95.2** | 22m54.6s | $1.43 | $0.0551 | 136.5 tok/s | 307,314 | 187,576 | 2 |
-| 14 | grok-4.5@high | **95.1** | 18m46.3s | $0.98 | $0.0376 | 33.1 tok/s | 143,299 | 37,296 | 1 |
+| 14 | grok-4.5@high ‡ | **95.1** | 18m46.3s | $0.98 | $0.0376 | 33.1 tok/s | 143,299 | 37,296 | 1 |
 | 15 | sonnet-4.6@high | **94.9** | 47m16.9s | $4.15 | $0.1597 | 64.9 tok/s | 462,910 | 184,163 | 3 |
 | 16 | gemini-3.7-flash@high | **94.3** | 20m38.0s | $3.08 | $0.1185 | 321.2 tok/s | 2,120,754 | 397,673 | 5 |
 | 17 | gemini-3.5-flash@high | **92.9** | 25m12.4s | $5.71 | $0.2195 | 221.4 tok/s | 1,796,775 | 334,781 | 4 |
-| 18 | grok-build-0.1@high | **92.0** | 50m16.7s | $1.18 | $0.0455 | 11.7 tok/s | 1,027,160 | 35,336 | 2 |
+| 18 | grok-build-0.1@high ‡ | **92.0** | 50m16.7s | $1.18 | $0.0455 | 11.7 tok/s | 1,027,160 | 35,336 | 2 |
 | 19 | gemini-3.1-pro@high | **91.7** | 39m09.6s | $6.28 | $0.2415 | 142.8 tok/s | 1,125,732 | 335,583 | 3 |
 | 20 | o4-mini@high | **90.8** | 31m05.1s | $2.33 | $0.0895 | 159.3 tok/s | 927,437 | 297,156 | 5 |
 | 21 | gpt-5.4-mini@high | **89.9** | 64m32.9s | $2.85 | $0.1097 | 151.1 tok/s | 291,139 | 585,320 | 3 |
 | 22 | gemini-3.5-flash-lite@high | **89.5** | 12m47.2s | $1.03 | $0.0395 | 334.9 tok/s | 1,278,675 | 256,914 | 4 |
-| 23 | grok-4.3@high | **87.5** | 43m44.0s | $1.18 | $0.0452 | 12.8 tok/s | 758,430 | 33,465 | 5 |
+| 23 | grok-4.3@high ‡ | **87.5** | 43m44.0s | $1.18 | $0.0452 | 12.8 tok/s | 758,430 | 33,465 | 5 |
 | 24 | gpt-chat-latest | **86.5** | 5m42.0s | $2.47 | $0.0948 | 109.7 tok/s | 267,958 | 37,513 | 7 |
 | 25 | haiku-4.5@high | **86.1** | 29m53.0s | $1.88 | $0.0722 | 143.8 tok/s | 588,128 | 257,780 | 7 |
 | 26 | gpt-4o | **73.8** | 11m49.2s | $1.15 | $0.0444 | 63.8 tok/s | 280,409 | 45,230 | 14 |
 | 27 | gpt-4-turbo | **55.5** | 31m49.5s | $9.83 | $0.3780 | 29.2 tok/s | 815,748 | 55,687 | 19 |
 > † **fable-5@medium**: swe-07, swe-10, swe-18 — refused by a safety classifier (false positive), answered by its **claude-opus-4-8** fallback.
+
+> ‡ **grok-4.5@high, grok-build-0.1@high, grok-4.3@high**: ran before the harness recorded reasoning tokens (xAI reports them beside `output_tokens` rather than inside it, unlike every other provider). Their token, speed and cost figures are therefore undercounts of unknown size and are not comparable with the other rows.
 
 > 💸 Cost, time and token totals exclude 1 open-ended task(s) flagged `exclude_from_totals` — effort there is model-chosen, not fixed by the task, so it isn't comparable: agentic-09. Their scores still count.
